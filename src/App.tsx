@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import { Route, Routes } from 'react-router-dom';
+import Client from './layouts/client';
+import HomePage from './layouts/homePage';
+import Details from './layouts/details';
+import Dashboard from './layouts/dashboard';
+import Header from './components/header';
+import Banner from './components/banner';
+import ProductsCard from './components/products';
+import Footer from './components/footer';
+import Product from './interface/product';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const products:Product[]=[]
+  const title: string="Home About Shop Contact"
+  // [
+  //   {
+  //     title: "Home"
+  //   },
+  //   {
+  //     title: "About"
+  //   },
+  //   {
+  //     title: "Shop"
+  //   },
+  //   {
+  //     title: "Contact"
+  //   },
+  // ]
+
+  return(
+    // <Routes>
+    //   <Route path='/' Component={Client}>
+    //     <Route path='' Component={HomePage} />
+    //     <Route path='/details/:id' Component={Details} />
+    //   </Route>
+    //   <Route path='/dashboard' Component={Dashboard} />
+    // </Routes>
+    <>
+      <Header title={title}/>
+      <Banner />
+      <ProductsCard products={products}/>
+      <Footer />
+    </>
+  )
 }
 
 export default App;
