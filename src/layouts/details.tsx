@@ -2,66 +2,69 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../interface/product";
 import axios from "axios";
+import ProductsCard from "../components/products";
 
 type ProductDetail = Product & {
   productListRelated: Product[];
 };
 
 const Details = () => {
-  const params:any = useParams();
-  const [product, setProduct] = useState<Product>();
-  useEffect(() => {
-    const id:number = params.id
-    fetch(`http://localhost:3000/products/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      setProduct(data)
-    })
-  }, [])
-  // const { productId } = useParams();
-  // const [product, setProduct] = useState<ProductDetail | null>(null);
+  // const params:any = useParams();
+  // const [product, setProduct] = useState<Product>();
+  // useEffect(() => {
+  //   const id:string = params.id
+  //   fetch(`http://localhost:3000/products/${id}`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     setProduct(data)
+  //   })
+  // }, [])
+  const { productId } = useParams();
+  const [product, setProduct] = useState<ProductDetail | null>(null);
 
-  // const fetchProduct = async (id:string) => {
-  //   try {
-  //     const { data: product } = await axios.get(
-  //       `http://localhost:3000/products/${id}`
-  //     );
+  const fetchProduct = async (_id:string | number) => {
+    try {
+      const { data: product } = await axios.get(
+        `https://nodejs-rose-psi.vercel.app/products/${_id}`
+      );
       
-  //     const { data: productListRelated } = await axios.get(
-  //       `http://localhost:3000/products/category/${product?.category}`
-  //     );
+      const { data: productListRelated } = await axios.get(
+        `https://nodejs-rose-psi.vercel.app/products/category/${product?.category}`
+      );
 
-  //     setProduct({
-  //       ...product,
-  //       productListRelated: productListRelated.filter(
-  //         (similarProduct: Product) => similarProduct.id !== product.id
-  //       ),
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      setProduct({
+        ...product,
+        productListRelated: productListRelated.filter(
+          (similarProduct: Product) => similarProduct._id !== product._id
+        ),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (!productId) return;
-  //   fetchProduct(productId);
-  // }, [productId]);
+  useEffect(() => {
+    if (!productId) return;
+    fetchProduct(productId);
+  }, [productId]);
 
-  // const [similarProduct, setSimilarProducts] = useState<Product[]>([]);
-  // const fetchSimilarProducts = async (product: Product) => {
-  //   const { data } = await axios.get(
-  //     `http://localhost:3000/products/category/${product?.category}`
-  //   );
+  const [similarProduct, setSimilarProducts] = useState<Product[]>([]);
+  const fetchSimilarProducts = async (product: Product) => {
+    const { data } = await axios.get(
+      `https://nodejs-rose-psi.vercel.app/products/category/${product?.category}`
+    );
 
-  //   const filteredData = data.filter(
-  //     (similarProduct: Product) => similarProduct.id !== product.id
-  //   );
-  //   setSimilarProducts(filteredData);
-  // };
+    const filteredData = data.filter(
+      (similarProduct: Product) => similarProduct._id !== product._id
+    );
+    setSimilarProducts(filteredData);
+  };
 
-  // useEffect(() => {
-  //   fetchSimilarProducts(product as Product);
-  // }, [product]);
+  useEffect(() => {
+    fetchSimilarProducts(product as Product);
+  }, [product]);
+
+
   return (
     <>
       <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -232,6 +235,16 @@ const Details = () => {
           </div>
         </div>
       </section>
+      <div>
+          <p className="title-font font-bold text-3xl text-gray-900 my-10 px-10">
+            Similar Products
+          </p>
+          <ul className="grid gap-8 grid-cols-3 px-10">
+            {product?.productListRelated.map((product) => (
+              <ProductsCard key={product._id} product={product} />
+            ))}
+          </ul>
+        </div>
     </>
   );
 };

@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { CountCT } from "../layouts/client";
 
-type Props = {
-  title: string;
-};
+type Props = {};
 
 const Header = (props: Props) => {
-  const [count, setCount] = useContext(CountCT) as any
+  const [state, setState] = useContext(CountCT) as any;
   return (
     <>
       <header className="bg-white">
@@ -82,7 +80,7 @@ const Header = (props: Props) => {
                   href="#"
                   className="text-sm font-semibold leading-6 px-2 py-1 rounded-md"
                 >
-                  Sign in <span aria-hidden="true">&rarr;</span>
+                  <Link to={"/login"}>Sign in <span aria-hidden="true">&rarr;</span></Link>
                 </a>
               </div>
             </div>
@@ -96,10 +94,32 @@ const Header = (props: Props) => {
           <div className="flex lg:flex-1 items-center">
             <i className="fa-brands fa-react text-2xl text-sky-500 pl-5 pr-2"></i>
             <span className="text-xl">ReactJS</span>
-          <div className="ml-10">So dem: {count} </div>
-          <button 
-            className="border-black border px-3 py-1.5 ml-5 rounded-md hover:bg-gray-200" 
-            onClick={() => setCount(count + 1)}>Thay doi value
+            <button
+              type="button"
+              className="mx-2 border-black border rounded-md hover:bg-gray-200 px-2 py-1"
+              onClick={() => {
+                setState({ type: "login" });
+              }}
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              className="mx-2 border-black border rounded-md hover:bg-gray-200 px-2 py-1"
+              onClick={() => {
+                setState({ type: "register" });
+              }}
+            >
+              Register
+            </button>
+            <button
+              type="button"
+              className="mx-2 border-black border rounded-md hover:bg-gray-200 px-2 py-1"
+              onClick={() => {
+                setState({ type: "reset" });
+              }}
+            >
+              Reset
             </button>
           </div>
           <div className="flex lg:hidden">
@@ -126,7 +146,7 @@ const Header = (props: Props) => {
           </div>
           <div className="lg:flex items-center">
             <div className="hidden lg:flex lg:gap-x-10 pr-16">
-              {/* <a
+              <a
                 href="#"
                 className="text-sm font-semibold leading-6 text-gray-900 hover:underline"
               >
@@ -136,7 +156,7 @@ const Header = (props: Props) => {
                 href="#"
                 className="text-sm font-semibold leading-6 text-gray-900 hover:underline"
               >
-                Product
+                <NavLink to={"/category"}>Danh mục</NavLink>
               </a>
               <a
                 href="#"
@@ -149,8 +169,7 @@ const Header = (props: Props) => {
                 className="text-sm font-semibold leading-6 text-gray-900 hover:underline"
               >
                 Admin
-              </a> */}
-              {props.title}
+              </a>
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center">
               <div className=" border rounded-md p-1.5 mr-7">
@@ -168,7 +187,8 @@ const Header = (props: Props) => {
                   </a>
                 </div>
                 <div className="">
-                <i className="fa-solid fa-cart-plus"></i><br />
+                  <i className="fa-solid fa-cart-plus"></i>
+                  <br />
                   <a
                     href="#"
                     className="text-sm font-semibold leading-6 px-2 py-1 rounded-md"
@@ -177,7 +197,7 @@ const Header = (props: Props) => {
                   </a>
                 </div>
                 <div className="">
-                <i className="fa-regular fa-bell"></i> <br />
+                  <i className="fa-regular fa-bell"></i> <br />
                   <a
                     href="#"
                     className="text-sm font-semibold leading-6 px-2 py-1 rounded-md"
@@ -191,6 +211,7 @@ const Header = (props: Props) => {
         </nav>
         <hr className="text-black" />
       </header>
+      {state}
     </>
   );
 };

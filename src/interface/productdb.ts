@@ -1,10 +1,10 @@
-export default interface Product {
-    _id: string | number,
+export interface ProductDB {
+    id: string,
     title: string,
     description: string,
     price: number,
     image: string,
-    count: number,
-    rate: number
     category: string
 }
+
+export type CreateProduct = Omit<ProductDB, 'id'>

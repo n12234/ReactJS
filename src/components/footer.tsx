@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { CountCT } from "../layouts/client";
 
 const Footer = () => {
+  // const [state,setCount] = useContext(CountCT) as any
   return (
     <>
       <footer className="bg-white">
@@ -198,6 +199,7 @@ const Footer = () => {
             <p className="text-center text-sm text-gray-500 sm:text-left">
               Copyright &copy; 2022. All rights reserved.
             </p>
+            {/* {state} */}
 
             <ul className="mt-4 flex justify-center gap-6 sm:mt-0 sm:justify-start">
               <li>

@@ -1,43 +1,77 @@
-import React, { useEffect, useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Product from "../interface/product";
-import ProductsCard from "../components/products";
+import React from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
-type Props = {};
+function Dashboard() {
 
-function Dashboard(props: Props) {
-  const [products, setProduct] = useState<Product[]>([]);
-  const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/products?skip=${(page - 1) * 9}&limit=9`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-      });
-  }, [page]);
+  const navigate = useNavigate()
+  const logout = () => {
+    navigate("/")
+  }
   return (
     <>
-      {/* <Header />
-      <div className="flex items-center justify-between px-10 pt-16">
-        <div className="">
-          <h1 className="text-3xl font-bold">Category Products</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+    <main>
+      <div className="flex">
+        <div className="sidebar min-h-screen border-r-2 top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-white">
+          <div className="text-xl">
+            <div className="p-2.5 mt-1 flex items-center">
+            <i className="fa-brands fa-react text-2xl text-sky-500 pl-5 pr-2"></i>
+            <span className="text-xl">ReactJS</span>
+              <i className="bi bi-x cursor-pointer ml-28 lg:hidden"></i>
+            </div>
+            <div className="my-2 bg-gray-600 h-[1px]"></div>
+          </div>
+          <div className="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white">
+            <i className="bi bi-search text-sm"></i>
+            <input
+              type="text"
+              placeholder="Search"
+              className="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+            />
+          </div>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 ">
+            <i className="bi bi-house-door-fill"></i>
+            <span className="text-[15px] ml-4 font-bold">
+            <NavLink to={"/dashboard/product"}>Home</NavLink>
+            </span>
+          </div>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200">
+            <i className="bi bi-bookmark-fill"></i>
+            <span className="text-[15px] ml-4 font-bold">
+              <NavLink to={"/dashboard/create"}>Create Products</NavLink>
+            </span>
+          </div>
+          <div className="my-4 bg-gray-600 h-[1px]"></div>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 ">
+            <i className="bi bi-chat-left-text-fill"></i>
+            <div className="flex justify-between w-full items-center">
+              <span className="text-[15px] ml-4 font-bold">
+                Chatbox
+              </span>
+              <span className="text-sm rotate-180" id="arrow">
+                <i className="bi bi-chevron-down"></i>
+              </span>
+            </div>
+          </div>
+          <div
+            className="text-left text-sm mt-2 w-4/5 mx-auto font-bold"
+            id="submenu"
+          >
+            <h1 className="cursor-pointer p-2 hover:bg-gray-200 rounded-md mt-1">
+              Social
+            </h1>
+          </div>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 ">
+            <i className="bi bi-box-arrow-in-right"></i>
+            <span onClick={logout} className="text-[15px] ml-4 font-bold">
+              Logout
+            </span>
+          </div>
         </div>
-        <button className="border border-black rounded-md px-4 py-1.5">View all</button>
+      <Outlet />
       </div>
-      <select id="status" className="mt-10 block w-[300px] mx-10 rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-          <option>Dispached Out</option>
-          <option>In Warehouse</option>
-          <option>Being Brought In</option>
-        </select>
-      <div className="grid grid-cols-3 py-10 px-10 gap-8">
-        {products.map((product) => (
-          <ProductsCard key={product.id} products={products} />
-        ))}
-      </div>
-      <Footer /> */}
+      <ToastContainer />
+      </main>
     </>
   );
 }

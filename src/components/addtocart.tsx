@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  pid: string;
+  pid: string | number;
 };
 
 const Addtocart = (props: Props) => {

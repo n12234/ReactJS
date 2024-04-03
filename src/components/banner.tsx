@@ -52,6 +52,15 @@ const Banner = () => {
           }}
         ></div>
       </div>
+      <div className="flex items-center justify-between px-10 pt-16">
+        <div className="">
+          <h1 className="text-3xl font-bold">Featured Products</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+        </div>
+        <button className="border border-black rounded-md px-4 py-1.5">
+          View all
+        </button>
+      </div>
     </>
   );
 };
