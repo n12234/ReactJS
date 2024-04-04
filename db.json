@@ -19,29 +19,29 @@
       "id": "5"
     },
     {
-      "title": "safsef",
-      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-      "price": "0534",
+      "title": "san pham ",
+      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "price": "0324",
       "category": "3",
-      "description": "iphone 12",
-      "id": "RO6lZZ_"
+      "description": "chất lượng hàng đầu ",
+      "id": "oI3rWed"
     }
   ],
   "categories": [
     {
-      "id": "men'clothing",
+      "id": "1",
       "title": "men'clothing"
     },
     {
-      "id": "women'clothing",
+      "id": "2",
       "title": "women'clothing"
     },
     {
-      "id": "electronics",
+      "id": "3",
       "title": "electronics"
     },
     {
-      "id": "jewelery",
+      "id": "4",
       "title": "jewelery"
     }
   ],
@@ -50,18 +50,6 @@
       "email": "nhatngo20102002@gmail.com",
       "password": "$2a$12$3vi1gI8Uz/SBzrqssEYRx.tuGx1A1EBI6GQAUqNFfDgfETZwalsBW",
       "id": "bce8"
-    },
-    {
-      "email": "nhatnvph30128@gmail.com",
-      "password": "$2a$10$d1aRF5vRrow72zNZlXgAr.dBxaz3rfyenMHnq5UNt3ceU4bll0kqK",
-      "id": "6HsqWAY"
-    },
-    {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$1znVyXKo54SKtFyuEUlsd.l35G1eQC0Ij98WKoN.cP7OeW9HmZHq.",
-      "username": "admin",
-      "confirmPassword": "123456",
-      "id": "hsfHmiO"
     }
   ]
 }

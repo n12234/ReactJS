@@ -1,5 +1,5 @@
 export interface ProductDB {
-    id: string,
+    id: string | number,
     title: string,
     description: string,
     price: number,

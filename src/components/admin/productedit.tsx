@@ -1,64 +1,69 @@
 import React, { useEffect, useState } from "react";
 import Joi from "joi";
-import {ProductDB} from "../../interface/productdb";
-import { ToastContainer, toast } from 'react-toastify';
+import { CreateProduct, ProductDB } from "../../interface/productdb";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { Category } from "../../interface/category";
+import axios from "axios";
 
 type Props = {};
 
 const ProductEdit = (props: Props) => {
+  const navigate = useNavigate();
+  const [categories, setCategoies] = useState<Category[]>([]);
 
-  const navigate = useNavigate()
-
-  const [title, setTitle] = useState<string>("");
-  const [image, setImage] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
-
-  const schema = Joi.object({
-    title: Joi.string().required().min(3).max(50).empty().message,
-    // ({
-    //   'string.empty':'Tên sản phẩm không được để trống',
-    //     'string.min': 'Tên sản phẩm phải có ít nhất 3 ký tự',
-    //     'string.max': 'Tên sản phẩm không được vượt quá 50 ký tự',
-    //     'any.required': 'Tên sản phẩm là trường bắt buộc',
-    //   }),
+  const [productEdit, setProductEdit] = useState<CreateProduct>({
+    title: "",
+    image: "",
+    price: 0,
+    category: "",
+    description: "",
   });
 
-  const param = useParams();
-  const id = param.id;
+  const { productId } = useParams();
 
-  // const [Products, setProduct] = useState<ProductDB[]>([]);
+  const fetchProduct = async (id: string | number) => {
+    try {
+      const {data: product} = await axios.get(`http://localhost:3000/products/${id}`)
+      setProductEdit(product)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
-    .then(res => res.json())
-    .then((product:ProductDB) => {
-      setTitle(product.title)
-      setImage(product.image)
-      setCategory(product.category)
-      setPrice(product.price)
-      setDescription(product.description)
-    })
+    if(!productId) return;
+    fetchProduct(productId)
+  }, [productId]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const {data} = await axios.get(`http://localhost:3000/categories`)
+        setCategoies(data)
+      } catch (error) {
+        console.log(error);
+        
+      }
+    };
+    fetchCategory();
   }, []);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(title, image, price, description, category);
+  const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setProductEdit({ ...productEdit, [e.target.name]: e.target.value });
+  };
 
-    fetch(`http://localhost:3000/products/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ title, image, price, description, category }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data:ProductDB) => {
-        toast.success('Update thành công!!')
-        navigate("/dashboard/product")
-      })
-      .catch((error) => {
-        toast.error(error)
-      });
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      await axios.put(`http://localhost:3000/products/`+ productId, productEdit)
+      toast.success("Update thành công!!");
+      navigate("/dashboard/product");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -74,10 +79,10 @@ const ProductEdit = (props: Props) => {
                 <label>Title</label>
                 <input
                   type="text"
-                  onChange={(e: any) => {
-                    setTitle(e.target.value);
-                  }}
-                  value={title}
+                  id="title"
+                  name="title"
+                  onChange={handleChangeForm}
+                  value={productEdit.title}
                   placeholder="Nhập tên sp"
                   className="mt-2 px-4 py-2 shadow rounded"
                 />
@@ -86,10 +91,10 @@ const ProductEdit = (props: Props) => {
                 <label>Price</label>
                 <input
                   type="number"
-                  value={price}
-                  onChange={(e: any) => {
-                    setPrice(e.target.value);
-                  }}
+                  id="price"
+                  name="price"
+                  onChange={handleChangeForm}
+                  value={productEdit.price}
                   placeholder="Giá"
                   className="mt-2 px-4 py-2 shadow rounded"
                 />
@@ -99,10 +104,10 @@ const ProductEdit = (props: Props) => {
               <label>Image</label>
               <input
                 type="text"
-                value={image}
-                onChange={(e: any) => {
-                  setImage(e.target.value);
-                }}
+                id="image"
+                name="image"
+                onChange={handleChangeForm}
+                  value={productEdit.image}
                 placeholder="Ảnh sp"
                 className="mt-2 px-4 py-2 shadow rounded"
               />
@@ -110,26 +115,31 @@ const ProductEdit = (props: Props) => {
             <div className="flex flex-col mb-4">
               <label>Danh mục</label>
               <select
-              value={category}
-                onChange={(e: any) => {
-                  setCategory(e.target.value);
-                }}
+              id="category"
+              name="category"
+                onChange={handleChangeForm}
+                value={productEdit.category}
                 className="mt-2 px-4 py-2 shadow rounded"
               >
-                <option selected></option>
+                {categories.map((categori) => (
+                  <option selected key={categori.id} value={categori.id}>
+                    {categori.title}
+                  </option>
+                ))}
               </select>
             </div>
 
             <div className="flex flex-col mb-4">
               <label>Description</label>
-              <textarea
-              value={description}
-                onChange={(e: any) => {
-                  setDescription(e.target.value);
-                }}
+              <input
+              type="text"
+              id="description"
+              name="description"
+                onChange={handleChangeForm}
+                value={productEdit.description}
                 placeholder="Nhập mô ta sp"
                 className="mt-2 px-6 py-2 shadow rounded"
-              ></textarea>
+              />
             </div>
             <div className="mt-6 flex gap-6">
               <button

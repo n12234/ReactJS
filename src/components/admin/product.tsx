@@ -62,6 +62,7 @@ const Products = ({}: Props) => {
       } catch (error) {
         console.log(error);
       }
+      // .then(res => res.json())
       // .then((data:ProductDB) => {
       //   toast.success('Thêm thành công!!')
       //   const newProducts = [...Products, data]

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { LoginValidate } from "../../validator/user";
 import axios from "axios";
 import { userLogin } from "../../interface/user";

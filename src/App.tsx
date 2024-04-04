@@ -24,7 +24,7 @@ function App() {
       </Route>
       <Route path='/dashboard' Component={Dashboard} >
         <Route path='product' Component={Products}/>
-        <Route path='product/:id' Component={ProductEdit}/>
+        <Route path='product/:productId' Component={ProductEdit}/>
       </Route>
     </Routes>
   )

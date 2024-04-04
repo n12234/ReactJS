@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import { Outlet } from "react-router-dom";
 import Login from "../components/user/login";
 import Register from "../components/user/register";
+import { ToastContainer } from "react-toastify";
 
 export const CountCT = createContext([] as any);
 const reducer = (state: any, action: any) => {

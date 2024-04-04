@@ -3,6 +3,7 @@ import { RegisterValidate } from "../../validator/user";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userRegister } from "../../interface/user";
+import { ToastContainer, toast } from "react-toastify";
 
 type Props = {};
 
@@ -30,8 +31,8 @@ function Register({}: Props) {
     } else {
       try {
         const response = await axios.post(`http://localhost:3000/register`, account);
-        navigate("/login");
         alert("Đăng kí thành công!");
+        navigate("/login");
       } catch (error) {
         setMessage("Đăng kí thất bại!");
       }

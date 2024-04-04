@@ -1,6 +1,7 @@
 import React from "react";
-import {ProductDB} from "../../interface/productdb";
+import { ProductDB } from "../../interface/productdb";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 type Props = {
   products: ProductDB[];
@@ -8,19 +9,24 @@ type Props = {
 };
 
 const Productslist = ({ products, setProduct }: Props) => {
-  const delProduct = (id: string | number) => {
-    fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" })
-      .then((res) => res.json())
-      .then((data: ProductDB) => {
-        const newProducts = products.filter(
-          (product: ProductDB) => product.id !== id
-        );
-        setProduct(newProducts);
-        toast.success('Xoá thành công!!')
-      })
-      .catch((error) => {
-        toast.error(error)
-      })
+  const delProduct =async (id: string | number) => {
+    const cf = window.confirm("Bạn có muốn xoá không?");
+    if (cf) {
+      try {
+        await axios.delete(`http://localhost:3000/products/${id}`)
+          .then(() => {
+            const newProducts = products.filter(
+              (product: ProductDB) => product.id !== id
+            );
+            setProduct(newProducts);
+            toast.success("Xoá thành công!!");
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      return;
+    }
   };
   return (
     <>
