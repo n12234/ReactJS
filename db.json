@@ -11,7 +11,7 @@
       "count": 430
     },
     {
-      "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      "title": "John Hardy Women's Legends Naga Gold",
       "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
       "price": 695,
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
@@ -22,27 +22,31 @@
       "title": "san pham ",
       "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
       "price": "0324",
-      "category": "3",
+      "category": "women'clothing",
       "description": "chất lượng hàng đầu ",
       "id": "oI3rWed"
+    },
+    {
+      "title": "san pham 3",
+      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "price": "0123",
+      "category": "women's clothing",
+      "description": "chất lượng hàng đầu ",
+      "id": "aZjIiGu"
     }
   ],
   "categories": [
     {
-      "id": "1",
+      "id": "men'clothing",
       "title": "men'clothing"
     },
     {
-      "id": "2",
+      "id": "women'clothing",
       "title": "women'clothing"
     },
     {
-      "id": "3",
+      "id": "electronics",
       "title": "electronics"
-    },
-    {
-      "id": "4",
-      "title": "jewelery"
     }
   ],
   "users": [

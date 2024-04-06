@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Joi from "joi";
-import { CreateProduct, ProductDB } from "../../interface/productdb";
-import { ToastContainer, toast } from "react-toastify";
+import { CreateProduct } from "../../interface/productdb";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { Category } from "../../interface/category";
 import axios from "axios";

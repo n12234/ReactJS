@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Dashboard() {
 
   const navigate = useNavigate()
-  const logout = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken")
+    alert("Logout thành công!")
     navigate("/")
   }
   return (
@@ -38,7 +40,7 @@ function Dashboard() {
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200">
             <i className="bi bi-bookmark-fill"></i>
             <span className="text-[15px] ml-4 font-bold">
-              <NavLink to={"/dashboard/create"}>Create Products</NavLink>
+              <NavLink to={"/dashboard/create"}>Create</NavLink>
             </span>
           </div>
           <div className="my-4 bg-gray-600 h-[1px]"></div>
@@ -46,24 +48,16 @@ function Dashboard() {
             <i className="bi bi-chat-left-text-fill"></i>
             <div className="flex justify-between w-full items-center">
               <span className="text-[15px] ml-4 font-bold">
-                Chatbox
+              <NavLink to={"/login"}>Sign in</NavLink>
               </span>
               <span className="text-sm rotate-180" id="arrow">
                 <i className="bi bi-chevron-down"></i>
               </span>
             </div>
           </div>
-          <div
-            className="text-left text-sm mt-2 w-4/5 mx-auto font-bold"
-            id="submenu"
-          >
-            <h1 className="cursor-pointer p-2 hover:bg-gray-200 rounded-md mt-1">
-              Social
-            </h1>
-          </div>
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 ">
             <i className="bi bi-box-arrow-in-right"></i>
-            <span onClick={logout} className="text-[15px] ml-4 font-bold">
+            <span onClick={handleLogout} className="text-[15px] ml-4 font-bold">
               Logout
             </span>
           </div>

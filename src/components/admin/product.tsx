@@ -62,12 +62,6 @@ const Products = ({}: Props) => {
       } catch (error) {
         console.log(error);
       }
-      // .then(res => res.json())
-      // .then((data:ProductDB) => {
-      //   toast.success('Thêm thành công!!')
-      //   const newProducts = [...Products, data]
-      //   setProduct(newProducts)
-      // })
     }
   };
 
@@ -127,9 +121,9 @@ const Products = ({}: Props) => {
                 className="mt-2 px-4 py-2 shadow rounded"
               >
                 <option hidden>----chọn----</option>
-                <option value="1">men's clothing</option>
-                <option value="2">women's clothing</option>
-                <option value="3">electronics</option>
+                <option value="men's clothing">men's clothing</option>
+                <option value="women's clothing">women's clothing</option>
+                <option value="electronics">electronics</option>
               </select>
             </div>
 
