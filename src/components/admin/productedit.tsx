@@ -16,14 +16,14 @@ const ProductEdit = (props: Props) => {
     image: "",
     price: 0,
     category: "",
-    description: "",
+    desc: "",
   });
 
   const { productId } = useParams();
 
   const fetchProduct = async (id: string | number) => {
     try {
-      const {data: product} = await axios.get(`http://localhost:3000/products/${id}`)
+      const {data: product} = await axios.get(`http://localhost:8000/products/${id}`)
       setProductEdit(product)
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ const ProductEdit = (props: Props) => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const {data} = await axios.get(`http://localhost:3000/categories`)
+        const {data} = await axios.get(`http://localhost:8000/categories`)
         setCategoies(data)
       } catch (error) {
         console.log(error);
@@ -57,7 +57,7 @@ const ProductEdit = (props: Props) => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:3000/products/`+ productId, productEdit)
+      await axios.put(`http://localhost:8000/products/`+ productId, productEdit)
       toast.success("Update thành công!!");
       navigate("/dashboard/product");
     } catch (error) {
@@ -129,13 +129,13 @@ const ProductEdit = (props: Props) => {
             </div>
 
             <div className="flex flex-col mb-4">
-              <label>Description</label>
+              <label>Desc</label>
               <input
               type="text"
-              id="description"
-              name="description"
+              id="desc"
+              name="desc"
                 onChange={handleChangeForm}
-                value={productEdit.description}
+                value={productEdit.desc}
                 placeholder="Nhập mô ta sp"
                 className="mt-2 px-6 py-2 shadow rounded"
               />

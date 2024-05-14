@@ -56,7 +56,7 @@ export const ProductsCard:React.FC<Props> = ({ product }) => {
               ${product.price}
             </span>
             <div className="flex items-center text-3xl">
-            <Addtocart pid={product._id} />
+            {/* <Addtocart addToCart={addToCart} /> */}
             </div>
           </div>
         </div>

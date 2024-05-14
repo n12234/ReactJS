@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Banner from "../components/banner";
 import ProductsCard from "../components/products";
 import Product from "../interface/product";
-import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 function HomePage() {
 

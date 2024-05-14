@@ -168,7 +168,7 @@ const Header = (props: Props) => {
                 href="#"
                 className="text-sm font-semibold leading-6 text-gray-900 hover:underline"
               >
-                Admin
+                Contact
               </a>
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center">

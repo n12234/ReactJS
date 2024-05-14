@@ -3,8 +3,8 @@
     {
       "id": "4",
       "title": "Mens Casual Slim Fit",
-      "price": 15.99,
-      "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      "price": "14.99",
+      "desc": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       "rate": 2.1,
@@ -14,7 +14,7 @@
       "title": "John Hardy Women's Legends Naga Gold",
       "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
       "price": 695,
-      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+      "desc": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
       "category": "jewelery",
       "id": "5"
     },
@@ -23,16 +23,16 @@
       "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
       "price": "0324",
       "category": "women'clothing",
-      "description": "chất lượng hàng đầu ",
+      "desc": "chất lượng hàng đầu ",
       "id": "oI3rWed"
     },
     {
-      "title": "san pham 3",
+      "title": "san pham1",
       "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-      "price": "0123",
-      "category": "women's clothing",
-      "description": "chất lượng hàng đầu ",
-      "id": "aZjIiGu"
+      "price": 345,
+      "category": "electronics",
+      "desc": "chat luong tot hon tuyet",
+      "id": "9OY7U40"
     }
   ],
   "categories": [
@@ -54,6 +54,12 @@
       "email": "nhatngo20102002@gmail.com",
       "password": "$2a$12$3vi1gI8Uz/SBzrqssEYRx.tuGx1A1EBI6GQAUqNFfDgfETZwalsBW",
       "id": "bce8"
+    },
+    {
+      "email": "nhatnvph30128@gmail.com",
+      "password": "$2a$10$CnrU0ru14Bm6Xgq6G6nsh.uN65oqsTE5c3pYVThXaeus1rboVK6i.",
+      "confirmPassword": "nN2342@324",
+      "id": "YjJpoMW"
     }
   ]
 }

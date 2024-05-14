@@ -1,7 +1,7 @@
 export interface ProductDB {
     id: string | number,
     title: string,
-    description: string,
+    desc: string,
     price: number,
     image: string,
     category: string

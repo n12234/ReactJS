@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   pid: string | number;
 };
 
 const Addtocart = (props: Props) => {
+
   const handleSubmit = () => {
-    alert(props.pid)
+    alert(props.pid);
   } 
+
   return (
     <button
       type="button"

@@ -1,15 +1,12 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
+import React from "react";
+import { Navigate } from "react-router-dom";
 
-type Props = {
-    accessToken: boolean,
-    children: React.ReactNode
-}
+const ProtectedRoute = ({ children }: any) => {
+  const accessToken = localStorage.getItem("accessToken")
+  if (!accessToken) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
-const Privaterouter = ({accessToken, children}: Props) => {
-  return (
-    (accessToken)?<>{children}</>:Navigate({to:'/'})
-  )
-}
-
-export default Privaterouter
+export default ProtectedRoute;

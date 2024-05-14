@@ -13,7 +13,7 @@ const Productslist = ({ products, setProduct }: Props) => {
     const cf = window.confirm("Bạn có muốn xoá không?");
     if (cf) {
       try {
-        await axios.delete(`http://localhost:3000/products/${id}`)
+        await axios.delete(`http://localhost:8000/products/${id}`)
           .then(() => {
             const newProducts = products.filter(
               (product: ProductDB) => product.id !== id
